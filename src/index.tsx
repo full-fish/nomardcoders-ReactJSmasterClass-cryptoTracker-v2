@@ -8,6 +8,8 @@ import E from './3-TYPESCRIPT/3.6'
 import { darkTheme, lightTheme } from './theme'
 import App from './5-CRYPTO_TRACKER/App'
 import { QueryClient, QueryClientProvider } from 'react-query'
+import { RecoilRoot } from 'recoil'
+
 const queryClient = new QueryClient()
 // const darkTheme = {
 //   textColor: 'whitesmoke',
@@ -29,10 +31,12 @@ root.render(
       <C />
     </ThemeProvider> */}
     {/* <D /> */}
-    <QueryClientProvider client={queryClient}>
-      {/* <E /> */}
-      <App />
-    </QueryClientProvider>
+    <RecoilRoot>
+      <QueryClientProvider client={queryClient}>
+        {/* <E /> */}
+        <App />
+      </QueryClientProvider>
+    </RecoilRoot>
     {/* </React.StrictMode> */}
   </div>
 )

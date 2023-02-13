@@ -63,11 +63,9 @@ interface ICoin {
   is_active: boolean
   type: string
 }
-interface ICoinsProps {
-  toggleDark: () => void
-}
+interface ICoinsProps {}
 
-function Coins({ toggleDark }: ICoinsProps) {
+function Coins({}) {
   // const [coins, setCoins] = useState<CoinInterface[]>([])
   // const [loading, setLoading] = useState(true)
   // const getCoins = async () => {
@@ -100,7 +98,6 @@ function Coins({ toggleDark }: ICoinsProps) {
       <Btn onClick={onClick}>Dark or Light</Btn>
       <Header>
         <Title>코인</Title>
-        <button onClick={toggleDark}>Toggle Dark Mode</button>
       </Header>
 
       {isLoading ? (
