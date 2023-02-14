@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { useQuery } from 'react-query'
 import axios from 'axios'
+import { useSetRecoilState } from 'recoil'
 import { fetchCoins } from '../api'
 import { Helmet } from 'react-helmet'
+import { isDarkAtom } from '../../atoms'
 
 const Container = styled.div`
   padding: 0px 20px;
@@ -82,6 +84,8 @@ function Coins({}) {
   //   // })() // 이런 함수는 바로 실행됨
   //   getCoins()
   // }, [])
+  const setDarkAtom = useSetRecoilState(isDarkAtom)
+  const toggleDarkAtom = () => setDarkAtom(prev => !prev)
   const { isLoading, data } = useQuery<ICoin[]>('allCoins', fetchCoins)
   const [theme, setTheme] = useState(localStorage.getItem('theme') === 'dark' || localStorage.getItem('theme') === undefined ? 'light' : 'dark')
   const onClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -95,9 +99,9 @@ function Coins({}) {
       <Helmet>
         <title>코인</title>
       </Helmet>
-      <Btn onClick={onClick}>Dark or Light</Btn>
       <Header>
         <Title>코인</Title>
+        <button onClick={toggleDarkAtom}>Toggle Mode</button>
       </Header>
 
       {isLoading ? (
